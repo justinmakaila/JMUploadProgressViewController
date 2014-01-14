@@ -27,7 +27,7 @@
 		5FBE1523184838B000B46D4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FBE1521184838B000B46D4B /* InfoPlist.strings */; };
 		5FBE1525184838B000B46D4B /* JMUploadProgressNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE1524184838B000B46D4B /* JMUploadProgressNavigationControllerTests.m */; };
 		5FBE1531184839F300B46D4B /* JMUploadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE1530184839F300B46D4B /* JMUploadProgressViewController.m */; };
-		5FBE153518483B2A00B46D4B /* JMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE153418483B2A00B46D4B /* JMProgressView.m */; };
+		5FBE153518483B2A00B46D4B /* PProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE153418483B2A00B46D4B /* PProgressView.m */; };
 		5FBE153718485E9D00B46D4B /* EQdfPqB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5FBE153618485E9D00B46D4B /* EQdfPqB.jpg */; };
 		5FBE153A1849241200B46D4B /* JMTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE15391849241200B46D4B /* JMTestViewController.m */; };
 		7DEC8B483E174C969DA38E9D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02205377F12347588B304FAA /* libPods.a */; };
@@ -74,8 +74,8 @@
 		5FBE1524184838B000B46D4B /* JMUploadProgressNavigationControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMUploadProgressNavigationControllerTests.m; sourceTree = "<group>"; };
 		5FBE152F184839F300B46D4B /* JMUploadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMUploadProgressViewController.h; sourceTree = "<group>"; };
 		5FBE1530184839F300B46D4B /* JMUploadProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMUploadProgressViewController.m; path = JMUploadProgressNavigationController/JMUploadProgressViewController.m; sourceTree = SOURCE_ROOT; };
-		5FBE153318483B2A00B46D4B /* JMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMProgressView.h; path = JMUploadProgressNavigationController/JMProgressView.h; sourceTree = SOURCE_ROOT; };
-		5FBE153418483B2A00B46D4B /* JMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMProgressView.m; path = JMUploadProgressNavigationController/JMProgressView.m; sourceTree = SOURCE_ROOT; };
+		5FBE153318483B2A00B46D4B /* PProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PProgressView.h; path = JMUploadProgressNavigationController/PProgressView.h; sourceTree = SOURCE_ROOT; };
+		5FBE153418483B2A00B46D4B /* PProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PProgressView.m; path = JMUploadProgressNavigationController/PProgressView.m; sourceTree = SOURCE_ROOT; };
 		5FBE153618485E9D00B46D4B /* EQdfPqB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = EQdfPqB.jpg; path = ../JMUploadProgressNavigationControllerExample/EQdfPqB.jpg; sourceTree = "<group>"; };
 		5FBE15381849241200B46D4B /* JMTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMTestViewController.h; path = ../JMUploadProgressNavigationControllerExample/JMTestViewController.h; sourceTree = "<group>"; };
 		5FBE15391849241200B46D4B /* JMTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMTestViewController.m; path = ../JMUploadProgressNavigationControllerExample/JMTestViewController.m; sourceTree = "<group>"; };
@@ -230,8 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				5FAFBAE518494034001CBFCC /* images */,
-				5FBE153318483B2A00B46D4B /* JMProgressView.h */,
-				5FBE153418483B2A00B46D4B /* JMProgressView.m */,
+				5FBE153318483B2A00B46D4B /* PProgressView.h */,
+				5FBE153418483B2A00B46D4B /* PProgressView.m */,
 				5F48DAA8187F3C27003855A7 /* UIColor+Hex.h */,
 				5F48DAA9187F3C27003855A7 /* UIColor+Hex.m */,
 			);
@@ -374,7 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FBE153518483B2A00B46D4B /* JMProgressView.m in Sources */,
+				5FBE153518483B2A00B46D4B /* PProgressView.m in Sources */,
 				5FAFBAE418492FAA001CBFCC /* JMExampleNavigationController.m in Sources */,
 				5FBE1510184838B000B46D4B /* JMSampleViewController.m in Sources */,
 				5FAFBADF18492E8D001CBFCC /* JMAPIExample.m in Sources */,

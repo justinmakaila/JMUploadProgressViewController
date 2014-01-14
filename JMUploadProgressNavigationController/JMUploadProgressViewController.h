@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JMProgressView.h"
+#import "PProgressView.h"
 
-@interface JMUploadProgressViewController : UINavigationController <JMProgressViewDelegate>
+@interface JMUploadProgressViewController : UINavigationController <PProgressViewDelegate>
 
 @property (nonatomic) BOOL positionBottom;
 

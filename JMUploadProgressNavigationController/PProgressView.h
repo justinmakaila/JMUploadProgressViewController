@@ -1,5 +1,5 @@
 //
-//  JMProgressView.h
+//  PProgressView.h
 //  JMUploadProgressNavigationController
 //
 //  Created by Justin Makaila on 11/28/13.
@@ -14,7 +14,7 @@
 /**
  *  The delegate for JMProgressView
  */
-@protocol JMProgressViewDelegate <NSObject>
+@protocol PProgressViewDelegate <NSObject>
 
 /**
  *  Called when the retry button is pressed
@@ -38,12 +38,12 @@
  *  The JMProgressView is a UIView subclass 
  *  used to keep track of upload progress
  */
-@interface JMProgressView : UIView
+@interface PProgressView : UIView
 
 /**
  *  The delegate
  */
-@property (unsafe_unretained) id<JMProgressViewDelegate> delegate;
+@property (unsafe_unretained) id<PProgressViewDelegate> delegate;
 
 /**
  *  Content view. Holds all content. Enables the swipe animation

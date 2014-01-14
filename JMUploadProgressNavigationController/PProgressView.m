@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Present, Inc. All rights reserved.
 //
 
-#import "JMProgressView.h"
+#import "PProgressView.h"
 #import "UIColor+Hex.h"
 
 typedef enum {
@@ -57,7 +57,7 @@ typedef enum {
     kActionButtonStyleRetry = 800
 } JMActionButtonStyleTag;
 
-@interface JMProgressView () <UIGestureRecognizerDelegate> {
+@interface PProgressView () <UIGestureRecognizerDelegate> {
     JMSwipeDirection direction;
     
     CGFloat currentPercentage;
@@ -82,7 +82,7 @@ static NSString *const kFinishedMessage  = @"Finished!";
 static NSString *const kRetryButtonText = @"Retry";
 static NSString *const kGoButtonText = @"Go";
 
-@implementation JMProgressView
+@implementation PProgressView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -103,6 +103,7 @@ static NSString *const kGoButtonText = @"Go";
     [self addSubview:self.contentView];
     
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.cancelButton.backgroundColor = [UIColor colorWithHexString:@"666"];
     [self.cancelButton setTitle:@"X" forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cancelButton];
@@ -186,23 +187,23 @@ static NSString *const kGoButtonText = @"Go";
 }
 
 - (void)failed {
-    self.statusLabel.text = kFailedMessage.uppercaseString;
-    
     self.actionButton.tag = kActionButtonStyleRetry;
     [self.actionButton setTitle:kRetryButtonText forState:UIControlStateNormal];
     if (self.actionButton.isHidden) {
         self.actionButton.hidden = NO;
     }
+    
+    self.statusLabel.text = kFailedMessage.uppercaseString;
 }
 
 - (void)requestUploadPermission {
-    self.statusLabel.text = kNoWiFiMessage.uppercaseString;
-    
     self.actionButton.tag = kActionButtonStyleGo;
     [self.actionButton setTitle:kGoButtonText forState:UIControlStateNormal];
     if (self.actionButton.isHidden) {
         self.actionButton.hidden = NO;
     }
+    
+    self.statusLabel.text = kNoWiFiMessage.uppercaseString;
 }
 
 #pragma mark - UIGestureRecognizer Delegate

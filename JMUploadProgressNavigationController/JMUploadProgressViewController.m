@@ -7,13 +7,13 @@
 //
 
 #import "JMUploadProgressViewController.h"
-#import "JMProgressView.h"
+#import "PProgressView.h"
 
 static CGFloat kProgressViewHeight = 70.0f;
 
 @interface JMUploadProgressViewController ()
 
-@property (strong, nonatomic) JMProgressView *progressView;
+@property (strong, nonatomic) PProgressView *progressView;
 
 @end
 
@@ -28,9 +28,9 @@ static CGFloat kProgressViewHeight = 70.0f;
 - (void)viewDidLayoutSubviews {
     if (!self.progressView) {
         if (!self.positionBottom) {
-            self.progressView = [[JMProgressView alloc] initWithFrame:CGRectMake(0, kProgressViewHeight, 320, 0)];
+            self.progressView = [[PProgressView alloc] initWithFrame:CGRectMake(0, kProgressViewHeight, 320, 0)];
         }else {
-            self.progressView = [[JMProgressView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds), 320, 0)];
+            self.progressView = [[PProgressView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds), 320, 0)];
         }
         
         self.progressView.delegate = self;
