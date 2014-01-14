@@ -7,7 +7,9 @@
 //
 
 #import "PProgressView.h"
-#import "UIColor+Hex.h"
+#import "PRoundedCornerButton.h"
+
+#import "HexColor.h"
 
 typedef enum {
     kJMSwipeDirectionUp = 0,
@@ -66,7 +68,7 @@ typedef enum {
 @property (strong, nonatomic) UILabel *statusLabel;
 
 @property (strong, nonatomic) UIButton *cancelButton;
-@property (strong, nonatomic) UIButton *actionButton;
+@property (strong, nonatomic) PRoundedCornerButton *actionButton;
 
 @property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
 
@@ -119,8 +121,11 @@ static NSString *const kGoButtonText = @"Go";
     self.progressView.type = LDProgressSolid;
     self.progressView.animate = @YES;
     self.progressView.background = [UIColor colorWithHexString:@"999"];
+    self.progressView.showBackgroundInnerShadow = @NO;
     self.progressView.color = [UIColor colorWithHexString:@"8130f2"];
     self.progressView.borderRadius = @5;
+    self.progressView.showStroke = @NO;
+    self.progressView.flat = @YES;
     self.progressView.clipsToBounds = YES;
     [self.contentView addSubview:self.progressView];
     
@@ -137,11 +142,10 @@ static NSString *const kGoButtonText = @"Go";
     self.statusLabel.textColor = [UIColor colorWithHexString:@"e5e5e5"];
     [self.progressView addSubview:self.statusLabel];
     
-    self.actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.actionButton.frame = CGRectMake(190, 0, 50, 30);
+    self.actionButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerTopRight | UIRectCornerBottomRight) radius:5.0f backgroundColor:[UIColor colorWithHexString:@"8130f2"]];
+    self.actionButton.frame = CGRectMake(189, 0, 50, 25);
     self.actionButton.clipsToBounds = YES;
-    self.actionButton.backgroundColor = [UIColor blackColor];
-    self.actionButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
+    self.actionButton.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     self.actionButton.hidden = YES;
     [self.actionButton addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.progressView addSubview:self.actionButton];
@@ -188,7 +192,7 @@ static NSString *const kGoButtonText = @"Go";
 
 - (void)failed {
     self.actionButton.tag = kActionButtonStyleRetry;
-    [self.actionButton setTitle:kRetryButtonText forState:UIControlStateNormal];
+    [self.actionButton setTitle:kRetryButtonText.uppercaseString forState:UIControlStateNormal];
     if (self.actionButton.isHidden) {
         self.actionButton.hidden = NO;
     }
@@ -198,7 +202,7 @@ static NSString *const kGoButtonText = @"Go";
 
 - (void)requestUploadPermission {
     self.actionButton.tag = kActionButtonStyleGo;
-    [self.actionButton setTitle:kGoButtonText forState:UIControlStateNormal];
+    [self.actionButton setTitle:kGoButtonText.uppercaseString forState:UIControlStateNormal];
     if (self.actionButton.isHidden) {
         self.actionButton.hidden = NO;
     }

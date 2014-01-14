@@ -11,8 +11,17 @@
 @interface JMSampleViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *showButton;
-@property (weak, nonatomic) IBOutlet UIButton *hideButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *failButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *requestUserPermissionButton;
+
+- (IBAction)startButtonPressed:(UIButton*)sender;
+- (IBAction)pauseButtonPressed:(UIButton*)sender;
+- (IBAction)cancelButtonPressed:(UIButton*)sender;
+- (IBAction)failButtonPressed:(UIButton*)sender;
+- (IBAction)requestUserPermissionButtonPressed:(UIButton*)sender;
 
 @end

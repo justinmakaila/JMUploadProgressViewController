@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
     :tag => 'v0.0.2' 
   }
   s.source_files = 'JMUploadProgressNavigationController/**/*.{h,m}'
-  s.dependency 'LDProgressView' 
-  s.dependency 'AFNetworking'
+  s.dependency 'LDProgressView', '>= 1.1' 
+  s.dependency 'AFNetworking', '~> 2.0.3'
+  s.dependency 'HexColors', '~> 2.2.1'
 end

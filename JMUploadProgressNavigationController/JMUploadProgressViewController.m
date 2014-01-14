@@ -132,13 +132,12 @@ static CGFloat kProgressViewHeight = 70.0f;
                          }else {
                              self.progressView.frame = CGRectMake(0, kProgressViewHeight, 320, 0);
                          }
-                         
-                         if (self.progressView.isOpen) {
-                             [self.progressView animateToClose];
-                         }
                      }completion:^(BOOL finished) {
                          [self setUploadProgress:0.0f];
                          _showingUploadProgressView = NO;
+                         if (self.progressView.isOpen) {
+                             [self.progressView animateToClose];
+                         }
                          [self.progressView removeFromSuperview];
                      }];
 }

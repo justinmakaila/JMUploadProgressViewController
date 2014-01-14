@@ -24,38 +24,8 @@
     self.navController = (JMExampleNavigationController*)self.navigationController;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelUploadReceived:) name:JMCancelUploadNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retryUploadReceived:) name:JMRetryUploadNotification object:nil];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (IBAction)buttonPressed:(UIButton*)sender {
-    if ([sender isEqual:self.showButton]) {
-        [self.navController showProgressView];
-    }else if ([sender isEqual:self.hideButton]) {
-        if (self.navController.isRunning) {
-            [self.navController uploadCancelled];
-        }
-        
-        [self.navController hideProgressView];
-    }else if ([sender isEqual:self.startButton]) {
-        if (self.startButton.isSelected) {
-            [[JMAPIExample sharedClient] suspendOperation];
-            self.startButton.selected = NO;
-        }else {
-            if (!self.navController.isShowingUploadProgressView) {
-                [self startUpload];
-            }
-            
-            self.startButton.selected = YES;
-        }
-    }else if ([sender isEqual:self.requestUserPermissionButton]) {
-        [self.navController requestUserPermission];
-    }
 }
 
 - (void)startUpload {
@@ -69,15 +39,43 @@
     [[JMAPIExample sharedClient] cancelOperation];
 }
 
-#pragma mark - Notifications
+#pragma mark - IBActions
 
-- (void)cancelUploadReceived:(NSNotification*)notification {
-    [self.navController uploadCancelled];
+- (IBAction)startButtonPressed:(UIButton *)sender {
+    NSLog(@"Start button");
+    if (![JMAPIExample sharedClient].isRunning) {
+        [[JMAPIExample sharedClient] startOperation];
+    }
+    
+    [self.navController uploadStarted];
+    [self.navController setProgressViewImage:[UIImage imageNamed:@"EQdfPqB.jpg"]];
 }
 
-- (void)retryUploadReceived:(NSNotification*)notification {
+- (IBAction)pauseButtonPressed:(UIButton *)sender {
+    NSLog(@"Pause button");
+    [[JMAPIExample sharedClient] suspendOperation];
+    
+    [self.navController uploadPaused];
+}
+
+- (IBAction)cancelButtonPressed:(UIButton *)sender {
+    NSLog(@"Cancel button");
     [[JMAPIExample sharedClient] cancelOperation];
-    [[JMAPIExample sharedClient] startOperation];
+    
+    [self.navController uploadCancelled];
+    [self.navController hideProgressView];
+}
+
+- (IBAction)failButtonPressed:(UIButton *)sender {
+    NSLog(@"Fail button");
+    [[JMAPIExample sharedClient] cancelOperation];
+    
+    [self.navController uploadFailed];
+}
+
+- (IBAction)requestUserPermissionButtonPressed:(UIButton *)sender {
+    NSLog(@"Request user permission button");
+    [self.navController requestUploadPermission];
 }
 
 @end

@@ -11,12 +11,15 @@
 @interface JMAPIExample : NSObject
 
 @property (strong, nonatomic) NSNumber *uploadProgress;
+
 @property (nonatomic, getter = isSuspended) BOOL suspended;
+@property (nonatomic, getter = isRunning) BOOL running;
 
 + (instancetype)sharedClient;
 
 - (void)startOperation;
 - (void)suspendOperation;
+- (void)resumeOperation;
 - (void)cancelOperation;
 
 @end

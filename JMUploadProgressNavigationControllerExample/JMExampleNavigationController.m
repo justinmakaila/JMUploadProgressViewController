@@ -21,10 +21,6 @@ static void *pUploadStatusContext = &pUploadStatusContext;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelUpload) name:JMCancelUploadNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retryUpload) name:JMRetryUploadNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeUpload) name:JMResumeUploadNotification object:nil];
 
     self.apiClient = [JMAPIExample sharedClient];
 #warning Change to NO to see the progress view at the top of the screen
@@ -41,20 +37,31 @@ static void *pUploadStatusContext = &pUploadStatusContext;
               context:pUploadStatusContext];
 }
 
-- (void)cancelUpload {
-    NSLog(@"Cancel upload");
+- (void)cancelButtonPressed {
     [self.apiClient cancelOperation];
     [self uploadCancelled];
+    [self hideProgressView];
+}
+
+- (void)actionButtonPressed:(NSInteger)tag {
+    switch (tag) {
+        case 700:
+            [self resumeUpload];
+            break;
+        case 800:
+            [self retryUpload];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)retryUpload {
-    NSLog(@"Retry upload");
     [self.apiClient startOperation];
     [self uploadStarted];
 }
 
 - (void)resumeUpload {
-    NSLog(@"Resume upload");
     [self.apiClient startOperation];
     [self uploadStarted];
 }

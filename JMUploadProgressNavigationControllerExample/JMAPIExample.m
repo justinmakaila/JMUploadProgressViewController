@@ -36,11 +36,19 @@ static const int kProgressIncreaseAmount = 10;
     [self resumeTimer];
     self.uploadProgress = @0;
     self.suspended = NO;
+    self.running = YES;
 }
 
 - (void)suspendOperation {
     [timer invalidate];
     self.suspended = YES;
+    self.running = NO;
+}
+
+- (void)resumeOperation {
+    [self resumeTimer];
+    self.suspended = NO;
+    self.running = YES;
 }
 
 - (void)cancelOperation {
@@ -49,14 +57,18 @@ static const int kProgressIncreaseAmount = 10;
     }
     
     timer = nil;
+    self.running = NO;
+    
+    self.uploadProgress = @0;
 }
 
 - (void)updateProgress:(NSTimer*)sender {
     int progress = [self.uploadProgress intValue] + kProgressIncreaseAmount;
     self.uploadProgress = [NSNumber numberWithInt:progress];
     
-    if (progress == 100) {
-        [self cancelOperation];
+    if ([self.uploadProgress isEqual:@100]) {
+        [timer invalidate];
+        timer = nil;
     }
 }
 
