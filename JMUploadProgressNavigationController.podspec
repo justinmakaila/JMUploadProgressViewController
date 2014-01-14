@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "JMUploadProgressNavigationController"
-  s.version      = "v0.0.2"
+  s.version      = "0.0.2"
   s.summary      = "UINavigationController subclass that provides an interface for displaying an upload progress view"
   s.homepage     = "https://bitbucket.org/justinmakaila/jmuploadprogressnavigationcontroller"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
