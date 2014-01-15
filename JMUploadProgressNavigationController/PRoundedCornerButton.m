@@ -7,7 +7,7 @@
 //
 
 #import "PRoundedCornerButton.h"
-#import "HexColor.h"
+#import <HexColor.h>
 
 @implementation PRoundedCornerButton
 
