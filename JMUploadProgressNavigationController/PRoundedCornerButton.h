@@ -12,7 +12,7 @@
 
 @property (nonatomic) CGFloat cornerRadius;
 @property (nonatomic) UIRectCorner cornersToRound;
-@property (nonatomic) UIColor *fillColor;
+@property (strong, nonatomic) UIColor *fillColor;
 
 + (instancetype)buttonWithRoundedCorners:(UIRectCorner)corners radius:(CGFloat)radius;
 + (instancetype)buttonWithRoundedCorners:(UIRectCorner)corners radius:(CGFloat)radius backgroundColor:(UIColor *)backgroundColor;
