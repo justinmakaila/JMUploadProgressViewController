@@ -67,7 +67,7 @@ typedef enum {
 
 @property (strong, nonatomic) UILabel *statusLabel;
 
-@property (strong, nonatomic) UIButton *cancelButton;
+@property (strong, nonatomic) PRoundedCornerButton *cancelButton;
 @property (strong, nonatomic) PRoundedCornerButton *actionButton;
 
 @property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
@@ -104,9 +104,12 @@ static NSString *const kGoButtonText = @"Go";
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"333"];
     [self addSubview:self.contentView];
     
-    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.cancelButton.backgroundColor = [UIColor colorWithHexString:@"666"];
-    [self.cancelButton setTitle:@"X" forState:UIControlStateNormal];
+    self.cancelButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerAllCorners) radius:5.0f backgroundColor:[UIColor colorWithHexString:@"e74c3c"]];
+    self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
+    [self.cancelButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [self.cancelButton setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    [self.cancelButton setTitleEdgeInsets:UIEdgeInsetsMake(5.6f, 0, 9, 0)];
+    [self.cancelButton setTitle:@"x" forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.cancelButton];
     
@@ -117,15 +120,15 @@ static NSString *const kGoButtonText = @"Go";
     
     self.progressView = [[LDProgressView alloc] init];
     self.progressView.frame = CGRectMake(71, 23, 239, 25);
-    self.progressView.showText = @NO;
     self.progressView.type = LDProgressSolid;
-    self.progressView.animate = @YES;
     self.progressView.background = [UIColor colorWithHexString:@"999"];
-    self.progressView.showBackgroundInnerShadow = @NO;
     self.progressView.color = [UIColor colorWithHexString:@"8130f2"];
-    self.progressView.borderRadius = @5;
+    self.progressView.showText = @NO;
+    self.progressView.animate = @YES;
     self.progressView.showStroke = @NO;
     self.progressView.flat = @YES;
+    self.progressView.showBackgroundInnerShadow = @NO;
+    self.progressView.borderRadius = @5;
     self.progressView.clipsToBounds = YES;
     [self.contentView addSubview:self.progressView];
     
@@ -152,8 +155,14 @@ static NSString *const kGoButtonText = @"Go";
 }
 
 - (void)layoutSubviews {
-    self.contentView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), 390, CGRectGetHeight(self.bounds));
-    self.cancelButton.frame = CGRectMake(370, (CGRectGetHeight(self.bounds) / 2) - 15, 30, 30);
+    self.contentView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), 375, CGRectGetHeight(self.bounds));
+    self.cancelButton.frame = CGRectMake(330, 23, 31, 25);
+    
+    CGRect cancelTitleFrame = [@"x" boundingRectWithSize:CGSizeMake(31, 25)
+                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                              attributes:nil
+                                                 context:nil];
+    NSLog(@"(%f, %f) %fx%f", CGRectGetMinX(cancelTitleFrame), CGRectGetMinY(cancelTitleFrame), CGRectGetWidth(cancelTitleFrame), CGRectGetHeight(cancelTitleFrame));
     
     [super layoutSubviews];
 }
@@ -255,7 +264,16 @@ static NSString *const kGoButtonText = @"Go";
 #pragma mark - IBActions
 
 - (void)actionButtonPressed:(UIButton*)sender {
-    [_delegate actionButtonPressed:sender.tag];
+    switch (sender.tag) {
+        case kActionButtonStyleGo:
+            [_delegate goButtonPressed];
+            break;
+        case kActionButtonStyleRetry:
+            [_delegate retryButtonPressed];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)cancelButtonPressed:(UIButton*)sender {
@@ -330,7 +348,7 @@ static NSString *const kGoButtonText = @"Go";
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         CGPoint contentViewCenter = { self.center.x - 100, self.contentView.center.y };
+                         CGPoint contentViewCenter = { self.center.x - 35, self.contentView.center.y };
                          self.contentView.center = contentViewCenter;
                          
                          self.open = YES;

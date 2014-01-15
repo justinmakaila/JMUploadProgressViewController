@@ -43,17 +43,12 @@ static void *pUploadStatusContext = &pUploadStatusContext;
     [self hideProgressView];
 }
 
-- (void)actionButtonPressed:(NSInteger)tag {
-    switch (tag) {
-        case 700:
-            [self resumeUpload];
-            break;
-        case 800:
-            [self retryUpload];
-            break;
-        default:
-            break;
-    }
+- (void)goButtonPressed {
+    [self resumeUpload];
+}
+
+- (void)retryButtonPressed {
+    [self retryUpload];
 }
 
 - (void)retryUpload {

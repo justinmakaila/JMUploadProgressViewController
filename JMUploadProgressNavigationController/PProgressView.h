@@ -19,7 +19,9 @@
 /**
  *  Called when the retry button is pressed
  */
-- (void)actionButtonPressed:(NSInteger)tag;
+- (void)retryButtonPressed;
+
+- (void)goButtonPressed;
 
 /**
  *  Called when the cancel button is pressed
