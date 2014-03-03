@@ -12,7 +12,7 @@
 @protocol JMUploadProgressViewControllerDelegate <PProgressViewDelegate, UINavigationControllerDelegate>
 @end
 
-@interface JMUploadProgressViewController : UINavigationController <PProgressViewDelegate>
+@interface JMUploadProgressViewController : UINavigationController <PProgressViewDelegate, JMUploadProgressViewControllerDelegate>
 
 @property (weak, nonatomic) id <JMUploadProgressViewControllerDelegate> delegate;
 
