@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PProgressView.h"
 
+@protocol JMUploadProgressViewControllerDelegate <PProgressViewDelegate, UINavigationControllerDelegate>
+@end
+
 @interface JMUploadProgressViewController : UINavigationController <PProgressViewDelegate>
+
+@property (weak, nonatomic) id <JMUploadProgressViewControllerDelegate> delegate;
 
 @property (nonatomic) BOOL positionBottom;
 

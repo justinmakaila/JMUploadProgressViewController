@@ -9,8 +9,6 @@
 #import "PProgressView.h"
 #import "PRoundedCornerButton.h"
 
-#import "HexColor.h"
-
 typedef enum {
     kJMSwipeDirectionUp = 0,
     kJMSwipeDirectionCenter,
@@ -97,14 +95,14 @@ static NSString *const kGoButtonText = @"Go";
 - (void)baseInit {
     self.clipsToBounds = YES;
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.backgroundColor = [UIColor colorWithHexString:@"333"];
+    self.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     
     self.contentView = [[UIView alloc] init];
     self.contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"333"];
+    self.contentView.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     [self addSubview:self.contentView];
     
-    self.cancelButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerAllCorners) radius:5.0f backgroundColor:[UIColor colorWithHexString:@"e74c3c"]];
+    self.cancelButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerAllCorners) radius:5.0f backgroundColor:[UIColor colorWithRed:0.905882353 green:0.298039216 blue:0.235294118 alpha:1.0]];
     self.cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
     [self.cancelButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [self.cancelButton setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
@@ -118,11 +116,19 @@ static NSString *const kGoButtonText = @"Go";
     self.imageView.clipsToBounds = YES;
     [self.contentView addSubview:self.imageView];
     
+    [self setupProgressView];
+    
+    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureReceived:)];
+    self.panGesture.delegate = self;
+    [self.contentView addGestureRecognizer:self.panGesture];
+}
+
+- (void)setupProgressView {
     self.progressView = [[LDProgressView alloc] init];
     self.progressView.frame = CGRectMake(71, 23, 239, 25);
     self.progressView.type = LDProgressSolid;
-    self.progressView.background = [UIColor colorWithHexString:@"999"];
-    self.progressView.color = [UIColor colorWithHexString:@"8130f2"];
+    self.progressView.background = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0];
+    self.progressView.color = [UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0];
     self.progressView.showText = @NO;
     self.progressView.animate = @YES;
     self.progressView.showStroke = @NO;
@@ -132,20 +138,12 @@ static NSString *const kGoButtonText = @"Go";
     self.progressView.clipsToBounds = YES;
     [self.contentView addSubview:self.progressView];
     
-    [self setupProgressView];
-    
-    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureReceived:)];
-    self.panGesture.delegate = self;
-    [self.contentView addGestureRecognizer:self.panGesture];
-}
-
-- (void)setupProgressView {
     self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, CGRectGetWidth(self.progressView.bounds), CGRectGetHeight(self.progressView.bounds))];
     self.statusLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    self.statusLabel.textColor = [UIColor colorWithHexString:@"e5e5e5"];
+    self.statusLabel.textColor = [UIColor colorWithRed:0.898039216 green:0.898039216 blue:0.898039216 alpha:1.0];
     [self.progressView addSubview:self.statusLabel];
     
-    self.actionButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerTopRight | UIRectCornerBottomRight) radius:5.0f backgroundColor:[UIColor colorWithHexString:@"8130f2"]];
+    self.actionButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerTopRight | UIRectCornerBottomRight) radius:5.0f backgroundColor:[UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0]];
     self.actionButton.frame = CGRectMake(189, 0, 50, 25);
     self.actionButton.clipsToBounds = YES;
     self.actionButton.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
