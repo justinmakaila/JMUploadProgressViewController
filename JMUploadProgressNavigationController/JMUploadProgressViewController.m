@@ -21,7 +21,6 @@ static CGFloat kProgressViewHeight = 70.0f;
 
 - (void)viewDidLoad {
     _showingUploadProgressView = NO;
-    self.delegate = self;
     
     [super viewDidLoad];
 }
@@ -104,20 +103,6 @@ static CGFloat kProgressViewHeight = 70.0f;
     
     _running = NO;
     _paused = NO;
-}
-
-#pragma mark - PProgressViewDelegate
-
-- (void)cancelButtonPressed {
-    [self.delegate cancelButtonPressed];
-}
-
-- (void)retryButtonPressed {
-    [self.delegate cancelButtonPressed];
-}
-
-- (void)goButtonPressed {
-    [self.delegate goButtonPressed];
 }
 
 #pragma mark - Animation Methods
