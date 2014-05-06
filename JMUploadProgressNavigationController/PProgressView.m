@@ -124,43 +124,38 @@ static NSString *const kGoButtonText = @"Go";
 }
 
 - (void)setupProgressView {
-    self.progressView = [[LDProgressView alloc] init];
-    self.progressView.frame = CGRectMake(71, 23, 239, 25);
-    self.progressView.type = LDProgressSolid;
-    self.progressView.background = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0];
-    self.progressView.color = [UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0];
-    self.progressView.showText = @NO;
-    self.progressView.animate = @YES;
-    self.progressView.showStroke = @NO;
-    self.progressView.flat = @YES;
-    self.progressView.showBackgroundInnerShadow = @NO;
-    self.progressView.borderRadius = @5;
-    self.progressView.clipsToBounds = YES;
-    [self.contentView addSubview:self.progressView];
+//    self.progressView = [[LDProgressView alloc] init];
+//    self.progressView.frame = CGRectMake(71, 23, 239, 25);
+//    self.progressView.type = LDProgressSolid;
+//    self.progressView.background = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0];
+//    self.progressView.color = [UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0];
+//    self.progressView.showText = @NO;
+//    self.progressView.animate = @YES;
+//    self.progressView.showStroke = @NO;
+//    self.progressView.flat = @YES;
+//    self.progressView.showBackgroundInnerShadow = @NO;
+//    self.progressView.borderRadius = @5;
+//    self.progressView.clipsToBounds = YES;
+//    [self.contentView addSubview:self.progressView];
     
-    self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, CGRectGetWidth(self.progressView.bounds), CGRectGetHeight(self.progressView.bounds))];
+    self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(81, 23, 239, 25)/*CGRectMake(10, 0, CGRectGetWidth(self.progressView.bounds), CGRectGetHeight(self.progressView.bounds))*/];
     self.statusLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     self.statusLabel.textColor = [UIColor colorWithRed:0.898039216 green:0.898039216 blue:0.898039216 alpha:1.0];
-    [self.progressView addSubview:self.statusLabel];
+    //[self.progressView addSubview:self.statusLabel];
+    [self.contentView addSubview:self.statusLabel];
     
-    self.actionButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerTopRight | UIRectCornerBottomRight) radius:5.0f backgroundColor:[UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0]];
-    self.actionButton.frame = CGRectMake(189, 0, 50, 25);
+    self.actionButton = [PRoundedCornerButton buttonWithRoundedCorners:(UIRectCornerAllCorners) radius:5.0f backgroundColor:[UIColor colorWithRed:0.505882353 green:0.188235294 blue:0.949019608 alpha:1.0]];
+    self.actionButton.frame = CGRectMake(250, 23, 50, 25);
     self.actionButton.clipsToBounds = YES;
     self.actionButton.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     self.actionButton.hidden = YES;
     [self.actionButton addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.progressView addSubview:self.actionButton];
+    [self addSubview:self.actionButton];
 }
 
 - (void)layoutSubviews {
     self.contentView.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), 375, CGRectGetHeight(self.bounds));
     self.cancelButton.frame = CGRectMake(330, 23, 31, 25);
-    
-    CGRect cancelTitleFrame = [@"x" boundingRectWithSize:CGSizeMake(31, 25)
-                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                              attributes:nil
-                                                 context:nil];
-    NSLog(@"(%f, %f) %fx%f", CGRectGetMinX(cancelTitleFrame), CGRectGetMinY(cancelTitleFrame), CGRectGetWidth(cancelTitleFrame), CGRectGetHeight(cancelTitleFrame));
     
     [super layoutSubviews];
 }
